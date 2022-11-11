@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+                <h2 class="tm-block-title">Product Categories</h2>
+                <div class="tm-product-table-container">
+                    <table class="table tm-table-small tm-product-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">IsMain</th>
+                                <th scope="col" class="text-center">Settings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Category category in Model)
+                            {
+                                <tr>
+                                    <td class="tm-product-name">@category.Name</td>
+                                    <td class="tm-product-name">@category.IsMain</td>
+                                    <td class="text-center">
+                                        <a asp-action="Detail" asp-route-id="@category.Id" class="btn btn-primary">Detail</a>
+                                        <a asp-action="Update" asp-route-id="@category.Id" class="btn btn-warning">Update</a>
+                                        <a asp-action="Delete" asp-route-id="@category.Id" class="tm-product-delete-link">
+                                            <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- table container -->
+                <a asp-controller="Category" asp-action="Create" class="btn btn-primary btn-block text-uppercase mb-3">
+                    Add new category
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

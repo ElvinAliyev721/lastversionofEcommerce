@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Report>
+@{
+    ViewData["Title"] = "News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="custom_container">
+        @foreach (Report news in Model)
+        {
+            <figure class="snip1529">
+                <img src="~/img/@news.Image" alt="pr-sample13" />
+                <div class="date"><span class="day">@news.ArticleDate</span></div>
+                <figcaption>
+                    <h3>@news.Name</h3>
+                    @*<p>@news.Description</p>*@
+                </figcaption>
+                <div class="hover"><i class="ion-android-open"></i></div>
+                <a asp-controller="Home" asp-action="DetailNews" asp-route-id="@news.Id"></a>
+            </figure>
+        }
+    </div>
+    <div class="shopify-footer-section-stockits">
+        <a href="#" class="article__grid-image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 25.142857142857146%;">
+                <img class="lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080]"
+                     data-aspectratio="3.977272727272727" data-sizes="auto" alt=""
+                     data-srcset="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_180x.png?v=1581430862 180w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_360x.png?v=1581430862 360w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_540x.png?v=1581430862 540w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_720x.png?v=1581430862 720w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_900x.png?v=1581430862 900w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_1080x.png?v=1581430862 1080w"
+                     sizes="699px"
+                     srcset="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_180x.png?v=1581430862 180w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_360x.png?v=1581430862 360w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_540x.png?v=1581430862 540w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_720x.png?v=1581430862 720w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_900x.png?v=1581430862 900w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_1080x.png?v=1581430862 1080w">
+                <noscript>
+                    <img class="lazyloaded"
+                         src="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_400x.png?v=1581430862"
+                         alt="&lt;center&gt;HARDCORE STOCKISTS&lt;/center&gt;">
+                </noscript>
+            </div>
+        </a>
+    </div>
+</div>

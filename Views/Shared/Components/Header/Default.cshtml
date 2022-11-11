@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Category>
+@{
+    Layout = null;
+}
+<style>
+    a.logosvg img{
+        width:38px;
+        background:white;
+    }
+</style>
+<nav>
+    <div class="wrapper">
+        <div class="logo">
+            <a asp-controller="Home" asp-action="Index" class="logosvg d-flex">
+                <img src="~/images/forsvgs/H.svg" alt="">
+                <img src="~/images/forsvgs/a.svg" alt="">
+                <img src="~/images/forsvgs/r.svg" alt="">
+                <img src="~/images/forsvgs/d.svg" alt="">
+                <img src="~/images/forsvgs/J.svg" alt="">
+                <img src="~/images/forsvgs/o.svg" alt="">
+                <img src="~/images/forsvgs/b.svg" alt="">
+            </a>
+        </div>
+        <input type="radio" name="slide" id="menu-btn">
+        <input type="radio" name="slide" id="cancel-btn">
+        <ul class="nav-links">
+            <label for="cancel-btn" class="btn cancel-btn"><i class="fas fa-times"></i></label>
+            @foreach (Category category in Model.Where(c => c.IsDeleted == false && c.IsMain))
+            {
+                <li>
+                    <a asp-controller="Product" asp-action="Index" asp-route-id="@category.Id" class="desktop-item">@category.Name</a>
+                    <input type="checkbox" id="showNew">
+                    <label for="showNew" class="mobile-item">@category.Name</label>
+                    @if (category.Children.Count() > 0)
+                    {
+                        <ul class="drop-menu">
+                            @foreach (Category child in category.Children)
+                            {
+                                <li><a asp-controller="Product" asp-action="Index" asp-route-id="@child.Id">@child.Name</a></li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li><a asp-controller="Account" asp-action="LogOut"><i class="fas fa-sign-out-alt"></i></a></li>
+            }
+            else
+            {
+                <li><a asp-controller="Account" asp-action="Login"><i class="fas fa-user-secret"></i></a></li>
+            }
+
+        </ul>
+        <li>
+            <a asp-controller="Home" asp-action="Basket" class="btn btn-light"><i class="fas fa-suitcase-rolling"></i></a>
+            @*<div class='search-box d-inline'>
+                    <input class="search-text" type="text" placeholder="Search Anything">
+                    <a href="#" class="search-btn">
+                        <i class="fas fa-search text-white search_icon_for_products"></i>
+                    </a>
+                </div>
+
+                <button type="button" class="btn btn-primary shoppyfy_btns btn_show_localstorage" data-toggle="modal"
+                        data-target="#cart">
+                    <i class="fab fa-shopify text-white"></i> (<span class="total-count"></span>)
+                </button>
+                <button class="clear-cart btn btn-danger shoppyfy_btns btn_delete_localstorage">
+                    <i class="fas fa-trash"></i>
+                </button>*@
+        </li>
+        <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+    </div>
+</nav>

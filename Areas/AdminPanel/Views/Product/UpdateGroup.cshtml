@@ -1,0 +1,78 @@
+﻿@model GroupOfProduct
+@{
+    ViewData["Title"] = "UpdateGroup";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container tm-mt-big tm-mb-big">
+    @if (TempData["ImageError"] != null)
+    {
+        <div class="row">
+            <div class="alert alert-danger">@TempData["ImageError"]</div>
+        </div>
+    }
+    <div class="row">
+        @foreach (ProductImage productImage in Model.ProductImages)
+        {
+            <div class="col-3 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="~/img/@productImage.Image" width="200" height="200" />
+                        @if (Model.ProductImages.Count > 1)
+                        {
+                            <form class="forms-sample" asp-action="DeleteImage" asp-route-id="@productImage.Id" method="post">
+                                <button type="submit" class="btn btn-danger mr-2">Delete</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="tm-block-title d-inline-block">Update Group</h2>
+                    </div>
+                </div>
+                <div class="row tm-edit-product-row">
+                    <div class="col-md-12">
+                        <form class="tm-edit-product-form" method="post" enctype="multipart/form-data">
+                            <div class="form-group mb-3">
+                                <label asp-for="Name">
+                                </label>
+                                <input asp-for="Name" class="form-control validate">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Description"></label>
+                                <textarea asp-for="Description" class="form-control validate" rows="3"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Price">
+                                </label>
+                                <input asp-for="Price" class="form-control validate">
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                            @if (Model.ProductImages.Count() < 5)
+                            {
+                                <div class="form-group mb-3">
+                                    <label asp-for="Photos">
+                                    </label>
+                                    <input asp-for="Photos" class="form-control validate" multiple>
+                                    <span asp-validation-for="Photos" class="text-danger"></span>
+                                </div>
+                            }
+
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <button class="btn btn-light" asp-action="Index">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

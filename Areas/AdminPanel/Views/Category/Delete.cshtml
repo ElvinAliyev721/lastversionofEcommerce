@@ -1,0 +1,52 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        @if (Model.IsMain)
+                        {
+                            <th scope="col">Children</th>
+                        }
+                        else
+                        {
+                            <th scope="col">Parent Name</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Name</td>
+                        @if (Model.IsMain)
+                        {
+                            <td>
+                                <ul>
+                                    @foreach (Category child in Model.Children)
+                                    {
+                                        <li>@child.Name <a class="btn btn-danger" asp-action="Delete" asp-route-id="@child.Id">Delete</a></li>
+                                    }
+                                </ul>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>@Model.Parent.Name <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.ParentId">Delete</a></td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <form class="forms-sample" method="post">
+                    <button type="submit" class="btn btn-danger mr-2">Delete</button>
+                    <button class="btn btn-light" asp-action="Index">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

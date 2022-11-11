@@ -1,0 +1,35 @@
+﻿@model Report
+@{
+    ViewData["Title"] = "DetailNews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <section class="news_about_section">
+        <div class="container">
+            <div class="row">
+                <div class="content-column col-lg-6 col-md-12 col-sm-12 order-2">
+                    <div class="inner-column">
+                        <div class="sec-title">
+                            <h2>@Model.Name</h2>
+                        </div>
+                        <div class="text">
+                            @Model.Description
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Column -->
+                <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                    <div class="inner-column wow fadeInLeft">
+                        <figure class="image-1">
+                            <a href="#" class="lightbox-image" data-fancybox="images">
+                                <img src="~/img/@Model.Image" alt="@Model.Name">
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

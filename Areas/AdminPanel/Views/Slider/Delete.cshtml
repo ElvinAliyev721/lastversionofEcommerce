@@ -1,0 +1,43 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 d-flex align-items-stretch justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <img src="~/img/@Model.Image" style="width:150px;height:200px;" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6 d-flex align-items-stretch justify-content-center">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="forms-sample" method="post">
+                            <button type="submit" class="btn btn-danger mr-2">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 d-flex align-items-stretch justify-content-center">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <a asp-action="Index">Go Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

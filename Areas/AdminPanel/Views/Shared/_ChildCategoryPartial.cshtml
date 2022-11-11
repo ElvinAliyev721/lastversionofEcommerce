@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Category>
+
+@foreach (Category child in Model)
+{
+    <option value="@child.Id">@child.Name</option>
+}

@@ -1,0 +1,27 @@
+﻿@model Report
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-12 tm-block-col">
+    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+        <h2 class="tm-block-title">Detail Page</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Name</td>
+                    <td>@Html.Raw(Model.Description)</td>
+                    <td>@Html.Raw(Model.ArticleDate)</td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-dark" asp-action="Index">Go Back</a>
+    </div>
+</div>

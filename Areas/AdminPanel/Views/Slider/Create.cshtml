@@ -1,0 +1,24 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Create New</h4>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Photos" class="text-dark">Images</label>
+                        <input asp-for="Photos" accept="image/*" class="form-control">
+                        <span asp-validation-for="Photos" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                    <button asp-action="Index" class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

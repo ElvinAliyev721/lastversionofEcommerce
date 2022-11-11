@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "GoProducts";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-12 tm-block-col">
+    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+        <h2 class="tm-block-title">Detail Page</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Count</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Categories</th>
+                    <th scope="col">Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Product item in Model)
+                {
+                    <tr>
+                        <td>@item.Count</td>
+                        <td>@item.ProductSizes.ElementAt(0).Size.Measure</td>
+                        <td>@item.ProductColors.ElementAt(0).Color.Name</td>
+                        <td>
+                            <ul>
+                                <li>Manin Category: @item.ProductCategories.Where(c => c.ProductId == item.Id).FirstOrDefault().Category.Name</li>
+
+                                @if (item.ProductCategories.Count() > 1)
+                                {
+                                    <li>Child Category: @item.ProductCategories.Where(p => p.ProductId == item.Id).ElementAt(1).Category.Name</li>
+                                }
+                            </ul>
+                        </td>
+                        <td>
+                            <a class="btn btn-warning" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a class="btn btn-dark" asp-action="Index">Go Back</a>
+    </div>
+</div>

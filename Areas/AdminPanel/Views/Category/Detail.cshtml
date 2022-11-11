@@ -1,0 +1,49 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-12 tm-block-col">
+    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+        <h2 class="tm-block-title">Detail Page</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    @if (Model.IsMain)
+                    {
+                        <th scope="col">Children</th>
+                    }
+                    else
+                    {
+                        <th scope="col">Parent Name</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Name</td>
+                    <td>@Html.Raw(Model.Description)</td>
+                    @if (Model.IsMain)
+                    {
+                        <td>
+                            <ul>
+                                @foreach (Category child in Model.Children)
+                                {
+                                    <li>@child.Name</li>
+                                }
+                            </ul>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>@Model.Parent.Name</td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-dark" asp-action="Index">Go Back</a>
+    </div>
+</div>

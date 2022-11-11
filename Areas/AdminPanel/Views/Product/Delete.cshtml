@@ -1,0 +1,32 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Size</th>
+                        <th scope="col">Color</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.ProductSizes.ElementAt(0).Size.Measure</td>
+                        <td>@Model.ProductColors.ElementAt(0).Color.Name</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <form class="forms-sample" method="post">
+                    <button type="submit" class="btn btn-danger mr-2">Delete</button>
+                    <button class="btn btn-light" asp-action="Index">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

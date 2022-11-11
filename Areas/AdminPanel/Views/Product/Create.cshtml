@@ -1,0 +1,183 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .form-check-input {
+        top: 8px;
+        right: -21px;
+    }
+
+    .form-control {
+        padding: 0;
+    }
+</style>
+<div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="tm-block-title d-inline-block">Add Product</h2>
+                    </div>
+                </div>
+                <div class="row tm-edit-product-row">
+                    <div class="col-md-12">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <form method="post" class="tm-edit-product-form" enctype="multipart/form-data">
+                            <div class="form-group mb-3" id="ForName">
+                                <label for="Name">
+                                    Name
+                                </label>
+                                <input id="Name" name="Name" class="form-control validate">
+                            </div>
+                            <div class="form-group mb-3" id="DbGroupName">
+                                <label for="groupId">Product Group Name : </label>
+                                <select class="form-control" id="groupId" name="GroupId">
+                                    @foreach (GroupOfProduct group in ViewBag.DbGroupNames)
+                                    {
+                                        <option value="@group.Id">@group.Name</option>
+                                    }
+                                </select>
+                            </div>
+
+                            @if (ViewBag.HasGroup > 0)
+                            {
+                                <div class="form-group mb-3">
+                                    <label class="form-check-label" asp-for="IsSame">
+                                        Is Same
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" asp-for="IsSame">
+                                </div>
+                            }
+
+                            <div class="form-group mb-3" id="ForDescription">
+                                <label for="Description">Description</label>
+                                <textarea id="Description" name="Description" class="form-control validate" rows="3"></textarea>
+                            </div>
+                            <div class="form-group mb-3" id="ForPrice">
+                                <label for="Price">
+                                    Price
+                                </label>
+                                <input id="Price" type="number" min="0" name="Price" class="form-control validate">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Count">
+                                </label>
+                                <input asp-for="Count" min="1" max="50" class="form-control validate">
+                                <span asp-validation-for="Count"></span>
+                            </div>
+                            <div class="form-group mb-3" id="ForPhotos">
+                                <label for="Photos">
+                                    Photos
+                                </label>
+                                <input id="Photos" type="file" accept="image/*" name="Photos" class="form-control validate" multiple>
+                            </div>
+                            <div class="form-group" id="Size">
+                                <label for="sizeId">Sizes : </label>
+                                <select class="form-control" id="sizeId" name="SizeId">
+                                    @foreach (Size item in ViewBag.Sizes)
+                                    {
+                                        <option value="@item.Id">@item.Measure</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group" id="Color">
+                                <label for="colorId">Colors : </label>
+                                <select class="form-control" id="colorId" name="ColorId">
+                                    @foreach (Color item in ViewBag.Colors)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group" id="mainCategory">
+                                <label for="mainCategoryId">Select Main Category:</label>
+                                <select class="form-control" id="mainCategoryId" name="MainCategoryId">
+                                    @foreach (var item in ViewBag.MainCategories)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group" id="childCategory">
+                                <label for="mainCategoryId">Select Child Category:</label>
+                                <select class="form-control" id="childCategoryId" name="ChildCategoryId">
+                                    @foreach (var item in ViewBag.ChildCategories)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block text-uppercase">Save</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).on("change", "#mainCategoryId", function () {
+        let id = $(this).val();
+        $.ajax({
+            url: "/AdminPanel/Product/GetChildCategory?mainCategoryId=" + id,
+            type: "Get",
+            success: function (resp) {
+                $("#childCategoryId").children().remove();
+                $("#childCategoryId").append(resp);
+
+            }
+        })
+    });
+
+
+
+    if ($("#IsSame").prop("checked")) {
+
+        $("#ForName").addClass("d-none");
+        $("#ForDescription").addClass("d-none");
+        $("#ForPrice").addClass("d-none");
+        $("#ForPhotos").addClass("d-none");
+        $("#DbGroupName").removeClass("d-none");
+        $("#mainCategory").addClass("d-none");
+        $("#childCategory").addClass("d-none");
+    }
+    else {
+
+        $("#ForName").removeClass("d-none");
+        $("#ForDescription").removeClass("d-none");
+        $("#ForPrice").removeClass("d-none");
+        $("#ForPhotos").removeClass("d-none");
+        $("#DbGroupName").addClass("d-none");
+        $("#mainCategory").removeClass("d-none");
+        $("#childCategory").removeClass("d-none");
+    }
+
+
+
+    $(document).on("click", "#IsSame", function () {
+        if ($(this).prop("checked")) {
+            $("#ForName").addClass("d-none");
+            $("#ForDescription").addClass("d-none");
+            $("#ForPrice").addClass("d-none");
+            $("#ForPhotos").addClass("d-none");
+            $("#DbGroupName").removeClass("d-none");
+            $("#mainCategory").addClass("d-none");
+            $("#childCategory").addClass("d-none");
+        } else {
+            $("#ForName").removeClass("d-none");
+            $("#ForDescription").removeClass("d-none");
+            $("#ForPrice").removeClass("d-none");
+            $("#ForPhotos").removeClass("d-none");
+            $("#DbGroupName").addClass("d-none");
+            $("#mainCategory").removeClass("d-none");
+            $("#childCategory").removeClass("d-none");
+        }
+    });
+</script>

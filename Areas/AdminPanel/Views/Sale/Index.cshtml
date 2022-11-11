@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SaleVM>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+                <h2 class="tm-block-title">Sales</h2>
+                <div class="tm-product-table-container">
+                    <table class="table tm-table-small tm-product-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Email</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Total</th>
+                                <th scope="col" class="text-center">Products</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (SaleVM sale in Model)
+                            {
+                                <tr>
+                                    <td class="tm-product-name">@sale.Email</td>
+                                    <td class="tm-product-name">@sale.Date</td>
+                                    <td class="tm-product-name">@sale.Total</td>
+                                    <td>
+                                        <ul>
+                                            @foreach (SaleProductVM saleProductVM in sale.SaleProductVMs)
+                                            {
+                                                <li>@saleProductVM.Title - @saleProductVM.Count - @saleProductVM.Price </li>
+                                            }
+                                        </ul>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

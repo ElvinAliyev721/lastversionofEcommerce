@@ -1,0 +1,58 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .form-control {
+        padding: 0;
+    }
+</style>
+
+<div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="tm-block-title d-inline-block">Update Group</h2>
+                    </div>
+                </div>
+                <div class="row tm-edit-product-row">
+                    <div class="col-md-12">
+                        <form class="tm-edit-product-form" method="post" enctype="multipart/form-data">
+                            <div class="form-group mb-3">
+                                <label asp-for="Count">
+                                </label>
+                                <input asp-for="Count" class="form-control validate">
+                                <span asp-validation-for="Count" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" id="Size">
+                                <label for="sizeId">Sizes : </label>
+                                <select class="form-control" id="sizeId" name="SizeId">
+                                    @foreach (Size item in ViewBag.Sizes)
+                                    {
+                                        <option value="@item.Id">@item.Measure</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group" id="Color">
+                                <label for="colorId">Colors : </label>
+                                <select class="form-control" id="colorId" name="ColorId">
+                                    @foreach (Color item in ViewBag.Colors)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <button class="btn btn-light" asp-action="Index">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,147 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .product-grid .product-image img{
+        height:264px;
+    }
+</style>
+<div class="container">
+    <section class="filter_section custom_filtred_products">
+        <div class="products-layout custom_filter_product_container">
+            <div class="col-1-of-4">
+                <a><i class="fas fa-times d-none closeiteminfilter text-dark"></i></a>
+                <div>
+
+                    <div class="form-group" id="Color">
+                        <label for="colorId">Colors : </label>
+                        <select class="form-control" id="colorId" name="ColorId">
+                            @foreach (Color item in ViewBag.Colors)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <div class="form-group" id="Size">
+                        <label for="sizeId">Sizes : </label>
+                        <select class="form-control" id="sizeId" name="SizeId">
+                            @foreach (Size item in ViewBag.Sizes)
+                            {
+                                <option value="@item.Id">@item.Measure</option>
+                            }
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-3-of-4">
+                <a class="filterButtonForProducts btn btn-primary">
+                    <i class="fas fa-align-left"> filter</i>
+                </a>
+                <!-- <form action="#">
+                    <div class="item">
+                        <label for="sort-by">Sort By</label>
+                        <select name="sort-by" id="sort-by">
+                            <option value="title" selected="selected">Name</option>
+                            <option value="number">Price</option>
+                            <option value="search_api_relevance">Relevance</option>
+                            <option value="created">Newness</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <label for="order-by">Order</label>
+                        <select name="order-by" id="order-by">
+                            <option value="ASC" selected="selected">ASC</option>
+                            <option value="DESC">DESC</option>
+                        </select>
+                    </div>
+                    <a href="#">Apply</a>
+                </form> -->
+
+                @*<div class="collection-filter__sort-container">
+                    <label for="SortBy" class="hidden-label">Sort</label>
+                    <select name="SortBy" id="SortBy">
+
+                        <option value="1">Alphabetically, A-Z</option>
+                        <option value="2">Alphabetically, Z-A</option>
+                        <option value="3">Price, low to high</option>
+                        <option value="4">Price, high to low</option>
+                        <option value="5">Date, new to old</option>
+                        <option value="6">Date, old to new</option>
+
+                    </select>
+                    <input class="collection-header__default-sort" type="hidden" value="created-descending">
+                </div>*@
+                <div class="product-layout">
+                    <div class="row" id="LoadProducts">
+
+                        <partial name="_ProductPartial">
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <div class="shopify-footer-section-stockits">
+        <a href="#" class="article__grid-image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 25.142857142857146%;">
+                <img class="lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080]"
+                     data-aspectratio="3.977272727272727" data-sizes="auto" alt=""
+                     data-srcset="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_180x.png?v=1581430862 180w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_360x.png?v=1581430862 360w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_540x.png?v=1581430862 540w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_720x.png?v=1581430862 720w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_900x.png?v=1581430862 900w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_1080x.png?v=1581430862 1080w"
+                     sizes="699px"
+                     srcset="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_180x.png?v=1581430862 180w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_360x.png?v=1581430862 360w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_540x.png?v=1581430862 540w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_720x.png?v=1581430862 720w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_900x.png?v=1581430862 900w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_1080x.png?v=1581430862 1080w">
+                <noscript>
+                    <img class="lazyloaded"
+                         src="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_400x.png?v=1581430862"
+                         alt="&lt;center&gt;HARDCORE STOCKISTS&lt;/center&gt;">
+                </noscript>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<script>
+    $(document).on("change", "#colorId", function () {
+        $.ajax({
+            url: "/Product/LoadProducts?colorId=" + Number($(this).val()),
+            type: "Get",
+            success: function (resp) {
+                $("#LoadProducts").children().remove();
+                $("#LoadProducts").append(resp);
+                /*console.log(resp);*/
+            }
+        });
+    });
+    $(document).on("change", "#sizeId", function () {
+        $.ajax({
+            url: "/Product/LoadProducts?sizeId=" + Number($(this).val()),
+            type: "Get",
+            success: function (resp) {
+                $("#LoadProducts").children().remove();
+                $("#LoadProducts").append(resp);
+                /*console.log(resp);*/
+            }
+        });
+    });
+    $(document).on("change", "#SortBy", function () {
+    /*console.log($(this).val());*/
+        $.ajax({
+            url: "/Product/LoadProducts?sortId=" + Number($(this).val()),
+            type: "Get",
+            success: function (res) {
+                $("#LoadProducts").children().remove();
+                $("#LoadProducts").append(res);
+            }
+        })
+    })
+</script>

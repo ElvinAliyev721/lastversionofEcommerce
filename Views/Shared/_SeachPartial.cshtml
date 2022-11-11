@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Product>
+@foreach (Product product in Model)
+{
+    <li>
+        <a class="btn btn-dark" asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">Name: @product.GroupOfProduct.Name, Size: @product.ProductSizes.ElementAt(0).Size.Measure, Color: @product.ProductColors.ElementAt(0).Color.Name</a>
+    </li>
+}

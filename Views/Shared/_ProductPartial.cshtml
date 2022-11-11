@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Product>
+@{
+    var pic = 1;
+}
+@foreach (Product product in Model)
+{
+    <div class="col-md-3 col-sm-6">
+        <div class="product-grid">
+            <div class="product-image">
+                <a asp-action="Detail" asp-route-id="@product.Id" class="image">
+                    @foreach (var image in product.GroupOfProduct.ProductImages.Take(2))
+                    {
+                        <img class=@("pic-"+pic) src="~/img/@image.Image">
+                        pic++;
+                    }
+                    @{
+                        pic = 1;
+                    }
+                </a>
+            </div>
+            <div class="product-content card-block">
+                <h3 class="title card-title"><a href="#">@product.GroupOfProduct.Name</a></h3>
+                <div class="price card-text">$@product.GroupOfProduct.Price</div>
+            </div>
+        </div>
+    </div>
+}

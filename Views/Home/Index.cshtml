@@ -1,0 +1,124 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var pic = 1;
+}
+<style>
+    .product-grid .product-image img{
+        max-height:307px;
+    }
+</style>
+<div class="slider">
+    <!-- myFade css -->
+    @foreach (Slider item in Model.Sliders)
+    {
+        <div class="myslide myFade">
+            <div class="slide-thumb">
+                <img src="~/img/@item.Image" style="width: 100%; height: 100%;">
+            </div>
+        </div>
+    }
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <!-- /onclick js -->
+</div>
+
+
+<div class="container">
+    <section class="newArrivalspeace d-flex">
+        <div class="arrival col-lg-6 col-md-12 col-12"><a asp-controller="Product" asp-action="Index" asp-route-id="4">Men's New Arrivals</a></div>
+        <div class="arrival col-lg-6 col-md-12 col-12"><a asp-controller="Product" asp-action="Index" asp-route-id="5">WoMen's New Arrivals</a></div>
+    </section>
+
+    <section class="productsnewin">
+        @if (Model.GroupOfProducts.Where(g => g.Products.ElementAt(0).ProductCategories.ElementAt(0).Category.Id == 4 && g.IsDeleted == false).Count() > 0)
+        {
+            <div class="header-with-link d-flex justify-content-between">
+                <p>New In</p>
+                <a class="btn btn-light" asp-controller="Product" asp-action="Index" asp-route-id="4">View All</a>
+            </div>
+        }
+
+
+
+        <div class="row">
+            @foreach (Product group in Model.Products.Where(p=>p.ProductCategories.Take(4).OrderByDescending(p=>p.Id).Any(p=>p.CategoryId==4) && p.IsDeleted==false))
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <a asp-controller="Product" asp-action="Detail" asp-route-id="@group.Id" class="image">
+                                @foreach (var image in group.GroupOfProduct.ProductImages.Take(2))
+                                {
+                                    <img class=@("pic-"+pic) src="~/img/@image.Image">
+                                    pic++;
+                                }
+                                @{
+                                    pic = 1;
+                                }
+                            </a>
+                        </div>
+                        <div class="product-content card-block">
+                            <h3 class="title card-title"><a href="#">@group.GroupOfProduct.Name</a></h3>
+                            <div class="price card-text">$@group.GroupOfProduct.Price</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (Model.GroupOfProducts.Where(g => g.Products.ElementAt(0).ProductCategories.ElementAt(0).Category.Id == 5 && g.IsDeleted == false).Count() > 0)
+        {
+            <div class="header-with-link d-flex justify-content-between">
+                <p>New In</p>
+                <a class="btn btn-light" asp-controller="Product" asp-action="Index" asp-route-id="5">View All</a>
+            </div>
+        }
+
+
+
+    <div class="row">
+        @foreach (Product group in Model.Products.Where(p => p.ProductCategories.Take(4).OrderByDescending(p => p.Id).Any(p => p.CategoryId == 5) && p.IsDeleted == false))
+        {
+            <div class="col-md-3 col-sm-6">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@group.Id" class="image">
+                            @foreach (var image in group.GroupOfProduct.ProductImages.Take(2))
+                            {
+                                <img class=@("pic-"+pic) src="~/img/@image.Image">
+                                pic++;
+                            }
+                            @{
+                                pic = 1;
+                            }
+                        </a>
+                    </div>
+                    <div class="product-content card-block">
+                        <h3 class="title card-title"><a href="#">@group.GroupOfProduct.Name</a></h3>
+                        <div class="price card-text">$@group.GroupOfProduct.Price</div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    </section>
+
+    <div class="shopify-footer-section-stockits">
+        <a href="#" class="article__grid-image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 25.142857142857146%;">
+                <img class="lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080]"
+                     data-aspectratio="3.977272727272727" data-sizes="auto" alt=""
+                     data-srcset="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_180x.png?v=1581430862 180w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_360x.png?v=1581430862 360w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_540x.png?v=1581430862 540w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_720x.png?v=1581430862 720w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_900x.png?v=1581430862 900w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_1080x.png?v=1581430862 1080w"
+                     sizes="699px"
+                     srcset="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_180x.png?v=1581430862 180w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_360x.png?v=1581430862 360w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_540x.png?v=1581430862 540w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_720x.png?v=1581430862 720w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_900x.png?v=1581430862 900w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_1080x.png?v=1581430862 1080w">
+                <noscript>
+                    <img class="lazyloaded"
+                         src="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_400x.png?v=1581430862"
+                         alt="&lt;center&gt;HARDCORE STOCKISTS&lt;/center&gt;">
+                </noscript>
+            </div>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@model Report
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+
+                <div class="row tm-edit-product-row">
+                    <div class="col-md-12">
+                        <form class="tm-edit-product-form" method="post" enctype="multipart/form-data">
+                            <div class="form-group mb-3">
+                                <label asp-for="Name">
+                                </label>
+                                <input asp-for="Name" class="form-control validate">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Description">Description</label>
+                                <textarea asp-for="Description" class="form-control validate" rows="3"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Photo">
+                                </label>
+                                <input asp-for="Photo" class="form-control validate">
+                                <span asp-validation-for="Photo" class="text-danger" accept="image/*"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <button class="btn btn-light" asp-action="Index">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

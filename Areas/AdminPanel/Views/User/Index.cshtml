@@ -1,0 +1,60 @@
+﻿@model IEnumerable<UserVM>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+                <h2 class="tm-block-title">Users</h2>
+                <div class="tm-product-table-container">
+                    <table class="table tm-table-small tm-product-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">FullName</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Is Active</th>
+                                <th scope="col" class="text-center">Settings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (UserVM userVM in Model)
+                            {
+                                <tr>
+                                    <td class="tm-product-name">@userVM.FullName</td>
+                                    <td class="tm-product-name">@userVM.Email</td>
+                                    <td class="tm-product-name">@userVM.Role</td>
+                                    @if (userVM.IsDeleted)
+                                    {
+
+
+                                        <td class="tm-product-name text-danger">De Active</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="tm-product-name text-success">Active</td>
+                                    }
+                                    <td class="text-center">
+                                        @if (userVM.IsDeleted)
+                                        {
+                                            <a asp-action="ChangeStatus" asp-route-id="@userVM.Id" class="btn btn-success">Activate</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="ChangeStatus" asp-route-id="@userVM.Id" class="btn btn-danger">De Activate</a>
+                                        }
+                                        <a asp-action="ChangeRole" asp-route-id="@userVM.Id" class="btn btn-warning">Change Role</a>
+                                        <a asp-action="ChangePassword" asp-route-id="@userVM.Id" class="btn btn-dark">Change Password</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

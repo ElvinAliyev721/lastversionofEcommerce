@@ -1,0 +1,138 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int dataId = 1;
+}
+
+<style>
+    .img-select img {
+        height: 260px;
+    }
+
+    .img-showcase img {
+        height: 450px;
+        width: 200px;
+    }
+</style>
+<div class="container">
+    <div class="card-wrapper">
+        <div class="card">
+            <!-- card left -->
+            <div class="product-imgs">
+                <div class="img-display">
+                    <div class="img-showcase">
+                        @foreach (ProductImage image in Model.GroupOfProduct.ProductImages)
+                        {
+                            <img src="~/img/@image.Image" alt="shoe image">
+                        }
+                    </div>
+                </div>
+                <div class="img-select">
+                    @foreach (ProductImage img in Model.GroupOfProduct.ProductImages)
+                    {
+                        <div class="img-item">
+                            <a href="#" data-id=@(dataId)>
+                                <img src="~/img/@img.Image" alt="shoe image">
+                            </a>
+                        </div>
+                        if (dataId <= 3)
+                        {
+                            dataId++;
+                        }
+                        else
+                        {
+                            dataId = 1;
+                        }
+
+                    }
+                    @*<div class="img-item">
+                            <a href="#" data-id="1">
+                                <img src="./assets/images/shoes_images/shoe_1.jpg" alt="shoe image">
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="2">
+                                <img src="./assets/images/shoes_images/shoe_2.jpg" alt="shoe image">
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="3">
+                                <img src="./assets/images/shoes_images/shoe_3.jpg" alt="shoe image">
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="4">
+                                <img src="./assets/images/shoes_images/shoe_4.jpg" alt="shoe image">
+                            </a>
+                        </div>*@
+                </div>
+            </div>
+            <!-- card right -->
+            <div class="product-content">
+                <h2 class="product-title">@Model.GroupOfProduct.Name</h2>
+                <div class="product-detail">
+                    @Model.GroupOfProduct.Description
+                </div>
+                <div class="product-price">
+                    <p class="new-price"> Price: <span>$@Model.GroupOfProduct.Price</span></p>
+                </div>
+
+                <div class="product-detail">
+
+                    <div class="shoes-colors">
+                        <h6 class="text-uppercase">Color</h6>
+                        <span class=@(Model.ProductColors.ElementAt(0).Color.Name) data-color=@(Model.ProductColors.ElementAt(0).Color.Paint)>
+                        </span>
+                    </div>
+
+                    <div class="sizes mt-5">
+                        <h6 class="text-uppercase">Size</h6>
+                        <label class="radio">
+                            <input type="radio" name="size" value="@Model.ProductSizes.ElementAt(0).Size.Measure" checked>
+                            <span>@Model.ProductSizes.ElementAt(0).Size.Measure</span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="purchase-info">
+                    <a asp-controller="Home" asp-action="AddToBasket" asp-route-id="@Model.Id" class="btn btn-dark">Add To Basket</a>
+                </div>
+
+                <div class="social-links d-flex align-items-center">
+                    <p class="m-0">Contact Us</p>
+                    <a href="#">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <div class="shopify-footer-section-stockits">
+        <a href="#" class="article__grid-image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 25.142857142857146%;">
+                <img class="lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080]"
+                     data-aspectratio="3.977272727272727" data-sizes="auto" alt=""
+                     data-srcset="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_180x.png?v=1581430862 180w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_360x.png?v=1581430862 360w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_540x.png?v=1581430862 540w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_720x.png?v=1581430862 720w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_900x.png?v=1581430862 900w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_1080x.png?v=1581430862 1080w"
+                     sizes="699px"
+                     srcset="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_180x.png?v=1581430862 180w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_360x.png?v=1581430862 360w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_540x.png?v=1581430862 540w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_720x.png?v=1581430862 720w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_900x.png?v=1581430862 900w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_1080x.png?v=1581430862 1080w">
+                <noscript>
+                    <img class="lazyloaded"
+                         src="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_400x.png?v=1581430862"
+                         alt="&lt;center&gt;HARDCORE STOCKISTS&lt;/center&gt;">
+                </noscript>
+            </div>
+        </a>
+    </div>
+</div>

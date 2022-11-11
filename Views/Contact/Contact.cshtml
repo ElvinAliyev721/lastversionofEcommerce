@@ -1,0 +1,140 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <section id="contact">
+
+        <h1 class="section-header">Contact</h1>
+
+        <div class="contact-wrapper">
+
+            <!-- Left contact page -->
+            <div asp-validation-summary="ModelOnly"></div>
+            <form method="post" class="form-horizontal">
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control">
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control">
+                        <span class="text-danger" asp-validation-for="Email"></span>
+                    </div>
+                </div>
+                <label asp-for="Message"></label>
+                <textarea asp-for="Message" class="form-control" rows="10"></textarea>
+                <span class="text-danger" asp-validation-for="Message"></span>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <button class="btn btn-primary send-button" id="submit" type="submit" value="SEND">
+                        <div class="alt-send-button">
+                            <i class="fa fa-paper-plane"></i><span class="send-text">SEND</span>
+                        </div>
+
+                    </button>
+                }
+                else
+                {
+                    <button disabled class="btn btn-primary send-button" id="submit" type="submit" value="SEND">
+                        <div class="alt-send-button">
+                            <i class="fa fa-paper-plane"></i><span class="send-text">SEND</span>
+                        </div>
+
+                    </button>
+                }
+
+
+            </form>
+
+            <!-- Left contact page -->
+
+            <div class="direct-contact-container">
+
+                <ul class="contact-list">
+                    <li class="list-item">
+                        <i class="fa fa-map-marker fa-2x">
+                            <span class="contact-text place">
+                                City,
+                                State
+                            </span>
+                        </i>
+                    </li>
+
+                    <li class="list-item">
+                        <i class="fa fa-phone fa-2x">
+                            <span class="contact-text phone">
+                                <a href="tel:1-212-555-5555" title="Give me a call">(212) 555-2368</a>
+                            </span>
+                        </i>
+                    </li>
+
+                    <li class="list-item">
+                        <i class="fa fa-envelope fa-2x">
+                            <span class="contact-text gmail">
+                                <a href="mailto:#" title="Send me an email">elvinaa@code.edu.az</a>
+                            </span>
+                        </i>
+                    </li>
+
+                </ul>
+
+                <hr>
+                <ul class="social-media-list">
+                    <li>
+                        <a href="#" target="_blank" class="contact-icon">
+                            <i class="fa fa-github" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="contact-icon">
+                            <i class="fa fa-codepen" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="contact-icon">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="contact-icon">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+
+                <div class="copyright">&copy; ALL OF THE RIGHTS RESERVED</div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="shopify-footer-section-stockits">
+        <a href="#" class="article__grid-image">
+            <div class="image-wrap" style="height: 0; padding-bottom: 25.142857142857146%;">
+                <img class="lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080]"
+                     data-aspectratio="3.977272727272727" data-sizes="auto" alt=""
+                     data-srcset="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_180x.png?v=1581430862 180w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_360x.png?v=1581430862 360w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_540x.png?v=1581430862 540w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_720x.png?v=1581430862 720w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_900x.png?v=1581430862 900w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_1080x.png?v=1581430862 1080w"
+                     sizes="699px"
+                     srcset="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_180x.png?v=1581430862 180w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_360x.png?v=1581430862 360w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_540x.png?v=1581430862 540w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_720x.png?v=1581430862 720w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_900x.png?v=1581430862 900w, //cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_1080x.png?v=1581430862 1080w">
+                <noscript>
+                    <img class="lazyloaded"
+                         src="//cdn.shopify.com/s/files/1/0206/6982/5088/files/FINDUS-INSTORE_01-3_400x.png?v=1581430862"
+                         alt="&lt;center&gt;HARDCORE STOCKISTS&lt;/center&gt;">
+                </noscript>
+            </div>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,219 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- module -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+    <!-- end module -->
+    <!-- for canvas -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r11/Stats.min.js"></script>
+
+    <!-- for canvas end -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/2017746894.js" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+
+    <link rel="stylesheet" href="~/css/style.css">
+    <title>HardJob</title>
+</head>
+
+<body>
+    @await Component.InvokeAsync("Header")
+    @RenderBody()
+    <footer>
+        <div class="footer-wrap">
+            @*<div class="container first_class">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <h3>BE THE FIRST TO KNOW</h3>
+                            <p>
+                                Get all the latest information on Triedge Services, Events, Jobs
+                                and Fairs. Sign up for our newsletter today.
+                            </p>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <form class="newsletter">
+                                <input type="text" placeholder="Email Address">
+                                <button class="newsletter_submit_btn" type="submit">
+                                    <i class="fa fa-paper-plane"></i>
+                                </button>
+                            </form>
+
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="col-md-12">
+                                <div class="standard_social_links">
+                                    <div>
+                                        <li class="round-btn btn-facebook">
+                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                                        </li>
+                                        <li class="round-btn btn-linkedin">
+                                            <a href="#">
+                                                <i class="fab fa-linkedin-in"
+                                                   aria-hidden="true"></i>
+                                            </a>
+
+                                        </li>
+                                        <li class="round-btn btn-twitter">
+                                            <a href="#">
+                                                <i class="fab fa-twitter"
+                                                   aria-hidden="true"></i>
+                                            </a>
+
+                                        </li>
+                                        <li class="round-btn btn-instagram">
+                                            <a href="#">
+                                                <i class="fab fa-instagram"
+                                                   aria-hidden="true"></i>
+                                            </a>
+
+                                        </li>
+                                        <li class="round-btn btn-whatsapp">
+                                            <a href="#">
+                                                <i class="fab fa-whatsapp"
+                                                   aria-hidden="true"></i>
+                                            </a>
+
+                                        </li>
+                                        <li class="round-btn btn-envelop">
+                                            <a href="#">
+                                                <i class="fa fa-envelope"
+                                                   aria-hidden="true"></i>
+                                            </a>
+
+                                        </li>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-12">
+                                <h3 style="text-align: right;">Stay Connected</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            <div class="second_class">
+                <div class="container second_class_bdr">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+
+                            <div class="footer-logo">
+                                <!-- <img src="./assets/images/5e53cf41ae298bb429570791.webp" alt="logo"> -->
+                            </div>
+                            <p>
+                                Your one-stop career platform to find Jobs, Internships, Professional Trainings,
+                                Projects, and Volunteering Opportunities.
+                            </p>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <!-- <h3>Quick LInks</h3> -->
+                            <ul class="footer-links">
+                                <li>
+                                    <a asp-controller="Contact" asp-action="Contact">Contact Us</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="About">About Us</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="News">News</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="ReturnInformation">Returns Information</a>
+                                </li>
+
+                                <!-- <li><a href="#">Sitemap</a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <!-- <h3>OUR SERVICES</h3> -->
+                            <ul class="footer-category">
+                                <li>
+                                    <a asp-controller="Home" asp-action="TermConditions">Term & Conditions</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="SizeGuide">Size Guide </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="Delivery">Delivery Information</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <!-- <h3>triedge Events</h3> -->
+                            <ul class="footer-links">
+                                <li>
+                                    <a asp-controller="Home" asp-action="Policy">Privacy Policy</a>
+                                </li>
+
+                                <li>
+                                    <a asp-controller="Search" asp-action="Index">Search</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="show-cart table">
+                    </table>
+                    <div>Total price: $<span class="total-cart"></span></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Order now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+    <script src="~/js/AddToCart.js"></script>
+    <script src="~/js/common.js"></script>
+    <script src="~/js/canvas.js"></script>
+
+    <script src="~/js/index.js"></script>
+</body>
+
+</html>
+
